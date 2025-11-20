@@ -213,7 +213,8 @@ class ProactiveProtocolSwitch(app_manager.RyuApp):
 
         while True:
             try:
-                req = parser.OFPPortStatsRequest(datapath, 0, ofproto.OFPP_ANY)
+                # Request stats only for port 2
+                req = parser.OFPPortStatsRequest(datapath, 0, 2)
                 datapath.send_msg(req)
             except Exception as e:
                 self.logger.exception("Exception while sending port stats request: %s", e)
